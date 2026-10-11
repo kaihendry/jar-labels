@@ -1,6 +1,6 @@
 # Praze preserve labels
 
-Builds an A4 sheet of **12 Praze Spicey Apple Chutney labels**, dated **Oct 2026**,
+Builds an A4 sheet of **12 Praze Spicy Apple Chutney labels**, dated **Oct 2026**,
 in three columns and four rows. Each label uses a different font family and a
 double rounded border, within a 60 x 40 mm area. Corner marks indicate the cut
 size; dimension arrows and a 50 mm ruler show the physical size on the PDF.

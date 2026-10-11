@@ -3,9 +3,10 @@ Please use [latex](https://wiki.archlinux.org/title/TeX_Live) to design A4 prese
 We have a Brother DCP-L2530DW series printer.
 
 The current batch needs 12 labels maximum, three columns by four rows on A4,
-with a different font family for each label. The wording is:
+with a different font family for each label. Avoid typewriter/monospaced fonts.
+The wording is:
 
-Praze Spicey Apple Chutney
+Praze Spicy Apple Chutney
 Oct 2026
 
 Use vector borders and embedded fonts for high-quality printing. The current
