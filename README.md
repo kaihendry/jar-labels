@@ -1,10 +1,12 @@
 # Praze preserve labels
 
-Builds an A4 sheet of **12 Praze Spiced Chutney labels**, dated **Oct 2026**,
+Builds an A4 sheet of **12 Praze Spicey Apple Chutney labels**, dated **Oct 2026**,
 in three columns and four rows. Each label uses a different font family and a
-double rounded border, within a 60 x 40 mm area.
+double rounded border, within a 60 x 40 mm area. Corner marks indicate the cut
+size; dimension arrows and a 50 mm ruler show the physical size on the PDF.
+Print at 100% / Actual Size and check that the ruler measures exactly 5 cm.
 Edit `\labelbrand`, `\labelproduct`, and `\labeldate` in `labels.tex` to change
-the wording or date.
+the wording or date. Use `\\` in the product name to insert a line break.
 
 ## Build and preview
 

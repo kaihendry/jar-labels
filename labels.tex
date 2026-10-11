@@ -8,7 +8,7 @@
 
 % Wording shared by all twelve labels.
 \newcommand{\labelbrand}{Praze}
-\newcommand{\labelproduct}{Spiced Chutney}
+\newcommand{\labelproduct}{Spicey Apple\\Chutney}
 \newcommand{\labeldate}{Oct 2026}
 
 % Twelve distinct font families, one for each label.
@@ -49,17 +49,23 @@
 % A 60 x 40 mm label area, with a double rounded frame inset from its edges.
 % All artwork and text remain vectors in the PDF.
 \newcommand{\chutneylabel}[1]{%
+    % Corner marks indicate the exact 60 x 40 mm cut size.
+    \draw[black, line width=0.25pt]
+        (0,2) -- (0,0) -- (2,0)
+        (58,0) -- (60,0) -- (60,2)
+        (0,38) -- (0,40) -- (2,40)
+        (58,40) -- (60,40) -- (60,38);
     \draw[black, line width=0.8pt, rounded corners=3mm]
         (1,1) rectangle (59,39);
     \draw[black, line width=0.3pt, rounded corners=2mm]
         (2.5,2.5) rectangle (57.5,37.5);
 
-    \node at (30,29.5) {
+    \node at (30,33) {
         {\selectlabelfont{#1}\fontsize{13}{15}\selectfont\labelbrand}
     };
-    \node at (30,21.5) {
-        {\selectlabelfont{#1}\fontsize{15}{18}\selectfont\textit{\labelproduct}}
-    };
+    \node[align=center,
+          font={\selectlabelfont{#1}\fontsize{14.5}{17}\selectfont\itshape}]
+        at (30,23.5) {\labelproduct};
 
     \draw[black, line width=0.3pt] (23,15.5) -- (28,15.5);
     \fill[black] (30,16.2) -- (30.7,15.5) -- (30,14.8) -- (29.3,15.5) -- cycle;
@@ -77,9 +83,10 @@
 
 \vspace*{\fill}
 \noindent
+\makebox[\textwidth][c]{%
 \begin{tikzpicture}[x=1mm, y=1mm]
     % Three columns and four rows, with 5 mm horizontal and 6 mm vertical gaps.
-    \path[use as bounding box] (0,-138) rectangle (190,40);
+    \path[use as bounding box] (-0.5,-168) rectangle (190.5,64);
     \foreach \row in {0,...,3} {
         \foreach \col in {0,...,2} {
             \pgfmathtruncatemacro{\fontindex}{3*\row+\col}
@@ -88,7 +95,34 @@
             \end{scope}
         }
     }
+
+    % Size guides sit outside the labels and are printed at the same scale.
+    \begin{scope}[font=\fontfamily{lmss}\fontsize{8}{10}\selectfont]
+        \node at (95,61) {12 labels \quad Cut size: 60 x 40 mm (6 x 4 cm)};
+        \node at (95,55.5) {Cut at the corner marks; the rounded border is inset by 1 mm.};
+
+        % Dimension the first label's cut marks, rather than its inset border.
+        \draw[line width=0.25pt] (0,41) -- (0,49) (60,41) -- (60,49);
+        \draw[<->, line width=0.35pt] (0,46) -- (60,46)
+            node[midway, fill=white, inner sep=1.5pt] {60 mm};
+        \draw[line width=0.25pt] (61,0) -- (64,0) (61,40) -- (64,40);
+        \draw[<->, line width=0.35pt] (62.5,0) -- (62.5,40)
+            node[midway, rotate=90, fill=white, inner sep=1pt] {40 mm};
+
+        % A true 50 mm ruler lets the printed scale be checked physically.
+        \node at (95,-146) {50 mm / 5 cm scale check};
+        \draw[line width=0.4pt] (70,-151) -- (120,-151);
+        \foreach \tick in {0,...,50} {
+            \draw[line width=0.2pt] (70+\tick,-151) -- (70+\tick,-152);
+        }
+        \foreach \tick in {0,10,...,50} {
+            \draw[line width=0.4pt] (70+\tick,-151) -- (70+\tick,-153);
+            \node[anchor=north, inner sep=1pt] at (70+\tick,-153) {\tick};
+        }
+        \node at (95,-164) {Print on A4 at 100\% / Actual Size. The ruler must measure exactly 5 cm.};
+    \end{scope}
 \end{tikzpicture}
+}%
 \par
 \vspace*{\fill}
 
