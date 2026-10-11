@@ -120,8 +120,8 @@
 \begin{document}
 
 % Create multiple rows of labels (3 columns)
-\begin{multicols}{3}
 \setlength{\columnsep}{0.3cm}
+\begin{multicols}{3}
 \raggedcolumns
 
 % Generate 27 labels (9 rows × 3 columns) to maximize A4 space
@@ -129,7 +129,8 @@
 \foreach \i in {1,...,27} {
     \marmaladelabel{\i}
 
-    \vspace{0.2cm}
+    % Leave room for all nine rows within the A4 margins.
+    \vspace{0.15cm}
 
 }
 
