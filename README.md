@@ -1,7 +1,10 @@
-# Marmalade labels made with the help of Claude
+# Praze preserve labels
 
-Builds an A4 sheet of 27 labels in three columns, using different fonts.
-Edit `labels.tex` to change the wording or date.
+Builds an A4 sheet of **12 Praze Spiced Chutney labels**, dated **Oct 2026**,
+in three columns and four rows. Each label uses a different font family and a
+double rounded border, within a 60 x 40 mm area.
+Edit `\labelbrand`, `\labelproduct`, and `\labeldate` in `labels.tex` to change
+the wording or date.
 
 ## Build and preview
 

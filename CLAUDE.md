@@ -1,10 +1,14 @@
-Please use [latex](https://wiki.archlinux.org/title/TeX_Live) to design an A4 set of Marmalade labels.
+Please use [latex](https://wiki.archlinux.org/title/TeX_Live) to design A4 preserve labels.
 
 We have a Brother DCP-L2530DW series printer.
 
-We want to create labels three columns wide on A4 that says:
+The current batch needs 12 labels maximum, three columns by four rows on A4,
+with a different font family for each label. The wording is:
 
-Praze Farm Marmalade
-Monday, 12 January 2026
+Praze Spiced Chutney
+Oct 2026
+
+Use vector borders and embedded fonts for high-quality printing. The current
+design has rounded double borders within 60 x 40 mm label areas.
 
 We plan to cut them out and stick onto the glass jars with milk.

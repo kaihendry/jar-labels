@@ -1,21 +1,17 @@
 \documentclass[a4paper]{article}
-\usepackage[margin=0.8cm]{geometry}
-\usepackage{multicol}
+\usepackage[margin=10mm]{geometry}
 \usepackage{tikz}
-\usetikzlibrary{decorations.pathmorphing}
-
-% Load various serif fonts (text only, no math packages to avoid conflicts)
-% We'll use fontenc to access different font families
 \usepackage[T1]{fontenc}
 
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 
-% Label dimensions - smaller to fit more per page
-\newcommand{\mylabelwidth}{5.5cm}
-\newcommand{\labelheight}{2.8cm}
+% Wording shared by all twelve labels.
+\newcommand{\labelbrand}{Praze}
+\newcommand{\labelproduct}{Spiced Chutney}
+\newcommand{\labeldate}{Oct 2026}
 
-% Command to select font based on number (27 fonts)
+% Twelve distinct font families, one for each label.
 \newcommand{\selectlabelfont}[1]{%
     \ifcase#1\relax
         \fontfamily{bch}\selectfont% 0: Charter
@@ -25,31 +21,14 @@
     \or \fontfamily{put}\selectfont% 4: Utopia
     \or \fontfamily{pnc}\selectfont% 5: New Century Schoolbook
     \or \fontfamily{pzc}\selectfont% 6: Zapf Chancery
-    \or \fontfamily{cmr}\selectfont% 7: Computer Modern
-    \or \fontfamily{lmr}\selectfont% 8: Latin Modern
+    \or \fontfamily{ccr}\selectfont% 7: Concrete Roman
+    \or \fontfamily{cmr}\selectfont% 8: Computer Modern
     \or \fontfamily{lmss}\selectfont% 9: Latin Modern Sans
-    \or \fontfamily{qpl}\selectfont% 10: TeX Gyre Pagella
-    \or \fontfamily{qtm}\selectfont% 11: TeX Gyre Termes
-    \or \fontfamily{qbk}\selectfont% 12: TeX Gyre Bonum
-    \or \fontfamily{qcs}\selectfont% 13: TeX Gyre Schola
-    \or \fontfamily{qhv}\selectfont% 14: TeX Gyre Heros
-    \or \fontfamily{ccr}\selectfont% 15: Concrete Roman
-    \or \fontfamily{cmss}\selectfont% 16: Computer Modern Sans
-    \or \fontfamily{cmtt}\selectfont% 17: Computer Modern Typewriter
-    \or \fontfamily{lmtt}\selectfont% 18: Latin Modern Typewriter
-    \or \fontfamily{phv}\selectfont% 19: Helvetica
-    \or \fontfamily{pcr}\selectfont% 20: Courier
-    \or \fontfamily{pag}\selectfont% 21: Avant Garde
-    \or \fontfamily{bch}\fontseries{b}\selectfont% 22: Charter Bold
-    \or \fontfamily{ppl}\fontseries{b}\selectfont% 23: Palatino Bold
-    \or \fontfamily{pbk}\fontseries{b}\selectfont% 24: Bookman Bold
-    \or \fontfamily{ptm}\fontseries{b}\selectfont% 25: Times Bold
-    \or \fontfamily{put}\fontseries{b}\selectfont% 26: Utopia Bold
-    \else \fontfamily{bch}\selectfont% default
+    \or \fontfamily{lmtt}\selectfont% 10: Latin Modern Typewriter
+    \or \fontfamily{pag}\selectfont% 11: Avant Garde
     \fi
 }
 
-% Command to get font name based on number
 \newcommand{\getfontname}[1]{%
     \ifcase#1\relax
         Charter%
@@ -59,81 +38,58 @@
     \or Utopia%
     \or Century Schoolbook%
     \or Zapf Chancery%
+    \or Concrete Roman%
     \or Computer Modern%
-    \or Latin Modern%
-    \or LM Sans%
-    \or Pagella%
-    \or Termes%
-    \or Bonum%
-    \or Schola%
-    \or Heros%
-    \or Concrete%
-    \or CM Sans%
-    \or CM Typewriter%
-    \or LM Typewriter%
-    \or Helvetica%
-    \or Courier%
+    \or Latin Modern Sans%
+    \or Latin Modern Typewriter%
     \or Avant Garde%
-    \or Charter Bold%
-    \or Palatino Bold%
-    \or Bookman Bold%
-    \or Times Bold%
-    \or Utopia Bold%
-    \else Charter%
     \fi
 }
 
-\newcommand{\marmaladelabel}[1]{%
-\begin{tikzpicture}
-    % Hand-drawn wavy border (irregular outline)
-    \draw[black, line width=1.2pt,
-          decoration={random steps, segment length=3mm, amplitude=1.5pt},
-          decorate]
-        plot[smooth cycle, tension=0.6] coordinates {
-            (0.2,0.1) (1.2,0.05) (2.5,0.1) (3.8,0.05) (5.0,0.15) (5.3,0.8)
-            (5.25,1.4) (5.3,2.0) (5.2,2.6) (4.5,2.7) (3.5,2.75) (2.5,2.7)
-            (1.5,2.75) (0.7,2.65) (0.25,2.2) (0.15,1.5) (0.2,0.8)
-        };
+% A 60 x 40 mm label area, with a double rounded frame inset from its edges.
+% All artwork and text remain vectors in the PDF.
+\newcommand{\chutneylabel}[1]{%
+    \draw[black, line width=0.8pt, rounded corners=3mm]
+        (1,1) rectangle (59,39);
+    \draw[black, line width=0.3pt, rounded corners=2mm]
+        (2.5,2.5) rectangle (57.5,37.5);
 
-    % Text content - centered layout with selected font
-    \pgfmathsetmacro{\fontindex}{int(#1-1)}
-    \node[align=center] at (2.75,1.85) {
-        {\selectlabelfont{\fontindex}\fontsize{11}{13}\selectfont\textit{Praze Farm}}
+    \node at (30,29.5) {
+        {\selectlabelfont{#1}\fontsize{13}{15}\selectfont\labelbrand}
+    };
+    \node at (30,21.5) {
+        {\selectlabelfont{#1}\fontsize{15}{18}\selectfont\textit{\labelproduct}}
     };
 
-    \node[align=center] at (2.75,1.4) {
-        {\selectlabelfont{\fontindex}\fontsize{11}{13}\selectfont\textit{Marmalade}}
-    };
+    \draw[black, line width=0.3pt] (23,15.5) -- (28,15.5);
+    \fill[black] (30,16.2) -- (30.7,15.5) -- (30,14.8) -- (29.3,15.5) -- cycle;
+    \draw[black, line width=0.3pt] (32,15.5) -- (37,15.5);
 
-    % Date at bottom
-    \node[align=center] at (2.75,0.6) {
-        {\selectlabelfont{\fontindex}\fontsize{8}{10}\selectfont Jan 2026}
+    \node at (30,10) {
+        {\selectlabelfont{#1}\fontsize{10}{12}\selectfont\labeldate}
     };
-
-    % Font name subscript (bottom right corner)
-    \node[align=right, anchor=south east] at (5.1,0.2) {
-        {\fontfamily{lmr}\selectfont\fontsize{5}{6}\selectfont\textit{\getfontname{\fontindex}}}
+    \node at (30,4.8) {
+        {\fontfamily{lmr}\fontsize{5.5}{7}\selectfont\getfontname{#1}}
     };
-\end{tikzpicture}%
 }
 
 \begin{document}
 
-% Create multiple rows of labels (3 columns)
-\setlength{\columnsep}{0.3cm}
-\begin{multicols}{3}
-\raggedcolumns
-
-% Generate 27 labels (9 rows × 3 columns) to maximize A4 space
-% Each label gets a unique font (27 different fonts)
-\foreach \i in {1,...,27} {
-    \marmaladelabel{\i}
-
-    % Leave room for all nine rows within the A4 margins.
-    \vspace{0.15cm}
-
-}
-
-\end{multicols}
+\vspace*{\fill}
+\noindent
+\begin{tikzpicture}[x=1mm, y=1mm]
+    % Three columns and four rows, with 5 mm horizontal and 6 mm vertical gaps.
+    \path[use as bounding box] (0,-138) rectangle (190,40);
+    \foreach \row in {0,...,3} {
+        \foreach \col in {0,...,2} {
+            \pgfmathtruncatemacro{\fontindex}{3*\row+\col}
+            \begin{scope}[shift={(65*\col,-46*\row)}]
+                \chutneylabel{\fontindex}
+            \end{scope}
+        }
+    }
+\end{tikzpicture}
+\par
+\vspace*{\fill}
 
 \end{document}
